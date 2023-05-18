@@ -1,3 +1,23 @@
 <resources>
+
     <string name="app_name">KotlinLesson01</string>
+
+    <string name="log_button">ボタン１</string>
+    <string name="log_message">ボタン１が押されました。</string>
+
+    <string name="toast_button">ボタン２</string>
+    <string name="toast_text">ボタン２が押されました。</string>
+
+    <string name="alert_dialog_button">ボタン３</string>
+    <string name="alert_dialog_title">タイトル</string>
+    <string name="alert_dialog_message">ボタン３が押されました。</string>
+    <string name="alert_dialog_ok_button">OK</string>
+
+    <string name="transition_button">ボタン４</string>
+    <string name="sub_activity_message">ボタン４が押されました</string>
+    <string name="close_button">閉じる</string>
+
+    <string name="edit_text_button">ボタン５</string>
+    <string name="edit_text_new_string">ボタン５が押されました。</string>
+
 </resources>

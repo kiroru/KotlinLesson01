@@ -1,46 +1,58 @@
 package jp.kiroru
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import jp.kiroru.ui.theme.KotlinLesson01Theme
+import android.util.Log
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val TAG = MainActivity::class.java.simpleName
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            KotlinLesson01Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+
+        setContentView(R.layout.activity_main)
+
+        // ログを表示する。
+        val logButton = findViewById<Button>(R.id.logButton)
+        logButton.setOnClickListener {
+            Log.d(TAG, resources.getString(R.string.log_message))
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        // トーストを表示する。
+        val toastButton = findViewById<Button>(R.id.toastButton)
+        toastButton.setOnClickListener {
+            Toast.makeText(this, resources.getString(R.string.toast_text), Toast.LENGTH_SHORT)
+                .show()
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KotlinLesson01Theme {
-        Greeting("Android")
+        // アラートダイアログを表示する。
+        val alertDialogButton = findViewById<Button>(R.id.alertDialogButton)
+        alertDialogButton.setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(resources.getString(R.string.alert_dialog_title))
+                .setMessage(resources.getString(R.string.alert_dialog_message))
+                .setPositiveButton(resources.getString(R.string.alert_dialog_ok_button), null)
+                .show()
+        }
+
+        // 別画面（アクティビティ）に遷移する。
+        val transitionButton = findViewById<Button>(R.id.transitionButton)
+        transitionButton.setOnClickListener {
+            val intent = Intent(this, SubActivity::class.java)
+            startActivity(intent)
+        }
+
+        // テキストビューを編集する。
+        val editTextViewButton = findViewById<Button>(R.id.editTextViewButton)
+        editTextViewButton.setOnClickListener {
+            val textView = findViewById<TextView>(R.id.textView)
+            textView.text = resources.getString(R.string.edit_text_new_string)
+        }
     }
 }
