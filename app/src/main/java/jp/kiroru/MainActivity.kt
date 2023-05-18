@@ -10,7 +10,7 @@ import jp.kiroru.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG = MainActivity::class.java.simpleName
+    private val tag = MainActivity::class.java.simpleName
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         // ログを表示する。
         binding.logButton.setOnClickListener {
-            Log.d(TAG, resources.getString(R.string.log_message))
+            Log.d(tag, resources.getString(R.string.log_message))
         }
 
         // トーストを表示する。
