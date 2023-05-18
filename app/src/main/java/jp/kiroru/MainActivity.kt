@@ -4,36 +4,35 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import jp.kiroru.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         // ログを表示する。
-        val logButton = findViewById<Button>(R.id.logButton)
-        logButton.setOnClickListener {
+        binding.logButton.setOnClickListener {
             Log.d(TAG, resources.getString(R.string.log_message))
         }
 
         // トーストを表示する。
-        val toastButton = findViewById<Button>(R.id.toastButton)
-        toastButton.setOnClickListener {
+        binding.toastButton.setOnClickListener {
             Toast.makeText(this, resources.getString(R.string.toast_text), Toast.LENGTH_SHORT)
                 .show()
         }
 
         // アラートダイアログを表示する。
-        val alertDialogButton = findViewById<Button>(R.id.alertDialogButton)
-        alertDialogButton.setOnClickListener {
+        binding.alertDialogButton.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle(resources.getString(R.string.alert_dialog_title))
                 .setMessage(resources.getString(R.string.alert_dialog_message))
@@ -42,17 +41,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 別画面（アクティビティ）に遷移する。
-        val transitionButton = findViewById<Button>(R.id.transitionButton)
-        transitionButton.setOnClickListener {
+        binding.transitionButton.setOnClickListener {
             val intent = Intent(this, SubActivity::class.java)
             startActivity(intent)
         }
 
         // テキストビューを編集する。
-        val editTextViewButton = findViewById<Button>(R.id.editTextViewButton)
-        editTextViewButton.setOnClickListener {
-            val textView = findViewById<TextView>(R.id.textView)
-            textView.text = resources.getString(R.string.edit_text_new_string)
+        binding.editTextViewButton.setOnClickListener {
+            binding.textView.text = resources.getString(R.string.edit_text_new_string)
         }
     }
 }
